@@ -1,0 +1,52 @@
+{
+  "versions": {
+    "1.1.0": {
+      "version": "1.1.0", 
+      "opam": {
+        "url": "http://calligramme.loria.fr/acg/software/acg-1.1-20140905.tar.gz", 
+        "checksum": "2b9b26cbb9342e1538de6bceeddf0b50", 
+        "files": [
+          {
+            "content": "diff -ur acgtk.1.1/src/datalog.solver/Makefile.in acgtk.1.1_patched/src/datalog.solver/Makefile.in\n--- acgtk.1.1/src/datalog.solver/Makefile.in\t2014-09-05 21:00:49.000000000 +0200\n+++ acgtk.1.1_patched/src/datalog.solver/Makefile.in\t2015-01-14 15:57:45.190596042 +0100\n@@ -33,7 +33,7 @@\n # ex. -I  +campl4\n LIBDIR +=\n \n-WARNINGS = -w yzd -warn-error A\n+WARNINGS = -w yzd\n \n # Directories to which the current source files depend on\n PREVIOUS_DIRS = \ndiff -ur acgtk.1.1/src/Makefile.master.in acgtk.1.1_patched/src/Makefile.master.in\n--- acgtk.1.1/src/Makefile.master.in\t2014-02-09 08:41:32.000000000 +0100\n+++ acgtk.1.1_patched/src/Makefile.master.in\t2015-01-14 15:58:01.026470929 +0100\n@@ -21,7 +21,7 @@\n OCAMLCPOPT = -p fm\n \n # All warnings are treated as errors\n-WARNINGS = @OCAML09WARNINGS@ -warn-error A\n+WARNINGS = @OCAML09WARNINGS@\n COMMONFLAGS= $(WARNINGS) @TYPES@\n BYTEFLAGS = $(COMMONFLAGS) $(DEBUGFLAG)\n OPTFLAGS = $(COMMONFLAGS)\n", 
+            "name": "acgtk_no_warn_error.patch"
+          }
+        ]
+      }, 
+      "esy": {
+        "buildsInSource": true, 
+        "build": [
+          "./configure --prefix=$cur__install", 
+          "make all", 
+          "make install-all", 
+          "(opam-installer --prefix=$cur__install || true)"
+        ], 
+        "exportedEnv": {
+          "acgtk_version": {
+            "scope": "global", 
+            "val": "1.1.0"
+          }, 
+          "acgtk_installed": {
+            "scope": "global", 
+            "val": "true"
+          }, 
+          "acgtk_enable": {
+            "scope": "global", 
+            "val": "enable"
+          }
+        }
+      }, 
+      "dependencies": {
+        "substs": "esy-ocaml/substs", 
+        "@opam/bolt": "*", 
+        "@opam/dypgen": "*", 
+        "opam-installer-bin": "esy-ocaml/opam-installer-bin", 
+        "@opam/ANSITerminal": "= 0.6.5"
+      }, 
+      "scripts": {}, 
+      "peerDependencies": {
+        "ocaml": ">= 4.00.0"
+      }, 
+      "name": "@opam/acgtk"
+    }
+  }
+}
